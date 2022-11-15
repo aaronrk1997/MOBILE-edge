@@ -19,14 +19,14 @@ public class MainController {
     @Autowired
     private RestTemplate restTemplate;
 
-    @Value("${beerService.baseurl}")
+/*     @Value("${beerService.baseurl}")
     private String beerServiceBaseUrl;
 
     @Value("${consumptionservice.baseurl}")
     private String consumptionServiceBaseUrl;
 
     @Value("${userservice.baseurl}")
-    private String userInfoServiceBaseUrl;
+    private String userInfoServiceBaseUrl; */
 
     
 }
