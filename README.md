@@ -12,7 +12,9 @@ Consumption-service: https://github.com/aaronrk1997/MOBILE-USER
 Beer-service: https://github.com/aaronrk1997/MOBILE-beer
 Edge-service: Huidige repo
 
-Foto van de architectuur: 
+Compose file: https://github.com/VanbroekhovenStef/mobile-compose/blob/main/docker-compose.yml
+
+Foto van de architectuur: ![alt text](https://github.com/aaronrk1997/MOBILE-edge/blob/master/architecture.jpg)
 
 Swagger van de edge service: https://edge-service-vanbroekhovenstef.cloud.okteto.net/swagger-ui/#/
 
