@@ -33,6 +33,8 @@ public class MainController {
     private String userInfoServiceBaseUrl;
 
     // returns the list of all available beers
+
+    //TODO REQUEST ALL SCORES PER BEER
     @GetMapping("/beers")
     public List<Beer> getBeers() {
         ResponseEntity<List<Beer>> response = restTemplate.exchange(beerServiceBaseUrl + "/beers", HttpMethod.GET, null, new ParameterizedTypeReference<List<Beer>>() {
