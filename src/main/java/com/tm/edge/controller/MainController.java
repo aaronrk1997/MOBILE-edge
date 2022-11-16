@@ -13,6 +13,7 @@ import com.tm.edge.model.Beer;
 import com.tm.edge.model.Brewery;
 import com.tm.edge.model.User;
 import com.tm.edge.model.Consumption;
+import com.tm.edge.model.FilledConsumption;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -157,8 +158,16 @@ public class MainController {
     // returns a list of all consumptions
     @GetMapping("/consumptions")
     public List<Consumption> getConsumptions() {
+
+        List<FilledConsumption> filledConsumptions = new ArrayList<>();
         ResponseEntity<List<Consumption>> response = restTemplate.exchange("http://"+ consumptionServiceBaseUrl + "/consumptions", HttpMethod.GET, null, new ParameterizedTypeReference<List<Consumption>>() {
         });
+
+        List<Consumption> consumptions = response.getBody();
+
+        for (Consumption consumption: consumptions){
+            Beer beer = restTemplate.getForObject("http://"+ beerServiceBaseUrl + "/beers/id/{id}", Beer.class,consumption.getBeerId());
+        }
         return response.getBody();
     }
 

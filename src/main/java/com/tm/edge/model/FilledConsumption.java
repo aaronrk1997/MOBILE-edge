@@ -1,84 +1,86 @@
 package com.tm.edge.model;
 
+import java.sql.Date;
 import java.util.List;
 
 import com.tm.edge.model.*;
 
 public class FilledConsumption {
-    private String beerName;
-    private String breweryName;
-    private String beerType;
-    private String beerDescription;
-    private String beerPicture;
-    private List<Consumption> consumptions;
-    private User user;
+    private String id;
+    private String userId;
+    private String beerId;
+    private Integer count;
+    private Integer score;
+    private String remark;
+    private Date createdAt;
+    private Beer beer;
 
-    public FilledConsumption( Beer beer, List<Consumption> consumptions, User user) {
-        setBeerName(beer.getName());
-        setBreweryName(beer.getBrewery().getName());
-        setBeerType(beer.getType());
-        setBeerDescription(beer.getDescription());
-        setBeerPicture(beer.getPicture());
-        setConsumptions(consumptions);
-        setUser(user);
+    
+    public FilledConsumption( Beer beer, Consumption consumption) {
+        setUserId(consumption.getUserId());
+        setBeerId(consumption.getBeerId());
+        setCount(consumption.getCount());
+        setScore(consumption.getScore());
+        setRemark(consumption.getRemark());
+        setCreatedAt(consumption.getCreatedAt());
+        
     }
 
-    public FilledConsumption(Beer beer, Consumption consumption) {
+    public String getId() {
+        return id;
     }
 
-    public String getBeerName() {
-        return beerName;
+    public void setId(String id) {
+        this.id = id;
     }
 
-    public void setBeerName(String beerName) {
-        this.beerName = beerName;
+    public String getUserId() {
+        return userId;
     }
 
-    public String getBreweryName() {
-        return breweryName;
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 
-    public void setBreweryName(String breweryName) {
-        this.breweryName = breweryName;
+    public String getBeerId() {
+        return beerId;
     }
 
-    public String getBeerType() {
-        return beerType;
+    public void setBeerId(String beerId) {
+        this.beerId = beerId;
     }
 
-    public void setBeerType(String beerType) {
-        this.beerType = beerType;
+    public Integer getCount() {
+        return count;
     }
 
-    public String getBeerDescription() {
-        return beerDescription;
+    public void setCount(Integer count) {
+        this.count = count;
     }
 
-    public void setBeerDescription(String beerDescription) {
-        this.beerDescription = beerDescription;
+    public Integer getScore() {
+        return score;
     }
 
-    public String getBeerPicture() {
-        return beerPicture;
+    public void setScore(Integer score) {
+        this.score = score;
     }
 
-    public void setBeerPicture(String beerPicture) {
-        this.beerPicture = beerPicture;
+    public String getRemark() {
+        return remark;
     }
 
-    public List<Consumption> getConsumptions() {
-        return consumptions;
+    public void setRemark(String remark) {
+        this.remark = remark;
     }
 
-    public void setConsumptions(List<Consumption> consumptions) {
-        this.consumptions = consumptions;
+    public Date getCreatedAt() {
+        return createdAt;
     }
 
-    public User getUser() {
-        return user;
+    public void setCreatedAt(java.util.Date date) {
+        this.createdAt = (Date) date;
     }
 
-    public void setUser(User user) {
-        this.user = user;
-    }
+    
 }
