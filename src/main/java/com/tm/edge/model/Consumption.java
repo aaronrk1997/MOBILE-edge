@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class Consumption{
     private String id;
-    private Integer userId;
+    private String userId;
     private String beerId;
     private Integer count;
     private Integer score;
@@ -14,7 +14,7 @@ public class Consumption{
     public Consumption() {
     }
 
-    public Consumption(Integer userId, String beerId, Integer count, Integer score, String remark) {
+    public Consumption(String userId, String beerId, Integer count, Integer score, String remark) {
         setUserId(userId);
         setBeerId(beerId);
         setCount(count);
@@ -31,11 +31,11 @@ public class Consumption{
         this.id = id;
     }
 
-    public Integer getUserId() {
+    public String getUserId() {
         return userId;
     }
 
-    public void setUserId(Integer userId) {
+    public void setUserId(String userId) {
         this.userId = userId;
     }
 
