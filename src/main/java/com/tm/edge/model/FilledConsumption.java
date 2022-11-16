@@ -16,6 +16,7 @@ public class FilledConsumption {
 
     
     public FilledConsumption( Beer beer, Consumption consumption) {
+        setId(consumption.getId());
         setUserId(consumption.getUserId());
         setBeerId(consumption.getBeerId());
         setCount(consumption.getCount());
