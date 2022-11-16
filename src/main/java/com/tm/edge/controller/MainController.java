@@ -153,6 +153,7 @@ public class MainController {
         });
     }
 
+    //TODO ADD BEER OBJECT
     // returns a list of all consumptions
     @GetMapping("/consumptions")
     public List<Consumption> getConsumptions() {
