@@ -170,32 +170,58 @@ public class MainController {
         return filledConsumptions;
     }
 
-    //TODO SEARCH CONSUMPTION ON ID
-    //TODO DELETE CONSUMPTION ON ID
-    //TODO PUT CONSUMPION ON ID
-
     //get consumption by user
     @GetMapping("/consumptions/user/{userId}")
-    public List<Consumption> getConsumptionsByUser(@PathVariable String userId) {
+    public List<FilledConsumption> getConsumptionsByUser(@PathVariable String userId) {
+
+        List<FilledConsumption> filledConsumptions = new ArrayList<>();
         ResponseEntity<List<Consumption>> response = restTemplate.exchange("http://"+ consumptionServiceBaseUrl + "/consumptions/user/" + userId, HttpMethod.GET, null, new ParameterizedTypeReference<List<Consumption>>() {
         });
-        return response.getBody();
+        List<Consumption> consumptions = response.getBody();
+
+        for (Consumption consumption: consumptions){
+            Beer beer = restTemplate.getForObject("http://"+ beerServiceBaseUrl + "/beers/id/{id}", Beer.class,consumption.getBeerId());
+            filledConsumptions.add(new FilledConsumption(beer, consumption));
+        }
+        return filledConsumptions;
+        
     }
 
     //get consumption by beer
     @GetMapping("/consumptions/beer/{beerId}")
-    public List<Consumption> getConsumptionsByBeer(@PathVariable String beerId) {
+    public List<FilledConsumption> getConsumptionsByBeer(@PathVariable String beerId) {
+
+        List<FilledConsumption> filledConsumptions = new ArrayList<>();
         ResponseEntity<List<Consumption>> response = restTemplate.exchange("http://"+ consumptionServiceBaseUrl + "/consumptions/beer/" + beerId, HttpMethod.GET, null, new ParameterizedTypeReference<List<Consumption>>() {
         });
-        return response.getBody();
+        List<Consumption> consumptions = response.getBody();
+
+        for (Consumption consumption: consumptions){
+            Beer beer = restTemplate.getForObject("http://"+ beerServiceBaseUrl + "/beers/id/{id}", Beer.class,consumption.getBeerId());
+            filledConsumptions.add(new FilledConsumption(beer, consumption));
+        }
+        return filledConsumptions;
     }
 
     //get consumption by beer and user
     @GetMapping("/consumptions/user/{userId}/beer/{beer}")
-    public List<Consumption> getConsumptionsByBeerAndUser(@PathVariable String userId, @PathVariable String beer) {
-        ResponseEntity<List<Consumption>> response = restTemplate.exchange("http://"+ consumptionServiceBaseUrl + "/consumptions/user/" + userId + "/beer/" + beer, HttpMethod.GET, null, new ParameterizedTypeReference<List<Consumption>>() {
+    public FilledConsumption getConsumptionsByBeerAndUser(@PathVariable String userId, @PathVariable String beer) {
+        ResponseEntity<Consumption> response = restTemplate.exchange("http://"+ consumptionServiceBaseUrl + "/consumptions/user/" + userId + "/beer/" + beer, HttpMethod.GET, null, new ParameterizedTypeReference<Consumption>() {
         });
-        return response.getBody();
+
+        Consumption consumption = response.getBody();
+        Beer beerfound = restTemplate.getForObject("http://"+ beerServiceBaseUrl + "/beers/id/{id}", Beer.class, consumption.getBeerId());
+        return new FilledConsumption(beerfound, consumption);
+    }
+
+    @GetMapping("/consumptions/{id}")
+    public FilledConsumption getConsumptionById(@PathVariable String id) {
+        ResponseEntity<Consumption> response = restTemplate.exchange("http://"+ consumptionServiceBaseUrl + "/consumptions/" + id, HttpMethod.GET, null, new ParameterizedTypeReference<Consumption>() {
+        });
+
+        Consumption consumption = response.getBody();
+        Beer beer = restTemplate.getForObject("http://"+ beerServiceBaseUrl + "/beers/id/{id}", Beer.class, consumption.getBeerId());
+        return new FilledConsumption(beer, consumption);
     }
 
     @PostMapping("/consumptions")
@@ -217,5 +243,7 @@ public class MainController {
         restTemplate.exchange("http://"+ consumptionServiceBaseUrl + "/consumptions/" + id, HttpMethod.DELETE, null, new ParameterizedTypeReference<Consumption>() {
         });
     }
+
+
 
 }
