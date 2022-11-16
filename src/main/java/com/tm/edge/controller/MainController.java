@@ -100,7 +100,7 @@ public class MainController {
 
     @PostMapping("/breweries")
     public Brewery addBrewery(@RequestBody Brewery brewery) {
-        ResponseEntity<Brewery> response = restTemplate.exchange(beerServiceBaseUrl + "/breweries", HttpMethod.POST, new HttpEntity<>(brewery), new ParameterizedTypeReference<Brewery>() {
+        ResponseEntity<Brewery> response = restTemplate.exchange("http://"+ beerServiceBaseUrl + "/breweries", HttpMethod.POST, new HttpEntity<>(brewery), new ParameterizedTypeReference<Brewery>() {
         });
         return response.getBody();
     }
