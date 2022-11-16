@@ -3,7 +3,7 @@ package com.tm.edge.model;
 public class Beer {
     //---------------Attributes-----------------
     private Long beerId;
-    private String name;
+    private String beerName;
     private String description;
     private String picture;
     private String barcode;
@@ -16,8 +16,8 @@ public class Beer {
         //Empty Constructor for jpa
     }
 
-    public Beer(String name, String description, String picture, String barcode, float alcoholpercentage, Brewery brewery, String type) {
-        setName(name);
+    public Beer(String beerName, String description, String picture, String barcode, float alcoholpercentage, Brewery brewery, String type) {
+        setName(beerName);
         setDescription(description);
         setPicture(picture);
         setBarcode(barcode);
@@ -35,11 +35,11 @@ public class Beer {
     }
 
     public String getName() {
-        return name;
+        return beerName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setName(String beerName) {
+        this.beerName = beerName;
     }
 
     public String getDescription() {

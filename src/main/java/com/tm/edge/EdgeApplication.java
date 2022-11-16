@@ -20,10 +20,10 @@ public class EdgeApplication {
     }
 
 	@Bean
-   public Docket productApi() {
-      return new Docket(DocumentationType.SWAGGER_2).select()
-         .apis(RequestHandlerSelectors.basePackage("com.tm.edge")).build();
-   }
+	public Docket productApi() {
+		return new Docket(DocumentationType.SWAGGER_2).select()
+			.apis(RequestHandlerSelectors.basePackage("com.tm.edge")).build();
+	}
 	
 	public static void main(String[] args) {
 		SpringApplication.run(EdgeApplication.class, args);
