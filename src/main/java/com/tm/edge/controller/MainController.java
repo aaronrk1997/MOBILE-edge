@@ -42,16 +42,16 @@ public class MainController {
         return response.getBody();
     }
 
-    @GetMapping("/beers/{name}")
-    public Beer getBeerByName(@PathVariable String name) {
-        ResponseEntity<Beer> response = restTemplate.exchange("http://"+ beerServiceBaseUrl + "/beers/" + name, HttpMethod.GET, null, new ParameterizedTypeReference<Beer>() {
+    @GetMapping("/beers/{beerName}")
+    public Beer getBeerByName(@PathVariable String beerName) {
+        ResponseEntity<Beer> response = restTemplate.exchange("http://"+ beerServiceBaseUrl + "/beers/" + beerName, HttpMethod.GET, null, new ParameterizedTypeReference<Beer>() {
         });
         return response.getBody();
     }
 
-    @GetMapping("/beers/search/{name}")
-    public List<Beer> getBeerBySearch(@PathVariable String name) {
-        ResponseEntity<List<Beer>> response = restTemplate.exchange("http://"+ beerServiceBaseUrl + "/beers/search/" + name, HttpMethod.GET, null, new ParameterizedTypeReference<List<Beer>>() {
+    @GetMapping("/beers/search/{beerName}")
+    public List<Beer> getBeerBySearch(@PathVariable String beerName) {
+        ResponseEntity<List<Beer>> response = restTemplate.exchange("http://"+ beerServiceBaseUrl + "/beers/search/" + beerName, HttpMethod.GET, null, new ParameterizedTypeReference<List<Beer>>() {
         });
         return response.getBody();
     }
@@ -63,16 +63,16 @@ public class MainController {
         return response.getBody();
     }
 
-    @PutMapping("/beers/{name}")
-    public Beer updateBeer(@PathVariable String name, @RequestBody Beer beer) {
-        ResponseEntity<Beer> response = restTemplate.exchange("http://"+ beerServiceBaseUrl + "/beers/" + name, HttpMethod.PUT, new HttpEntity<>(beer), new ParameterizedTypeReference<Beer>() {
+    @PutMapping("/beers/{beerName}")
+    public Beer updateBeer(@PathVariable String beerName, @RequestBody Beer beer) {
+        ResponseEntity<Beer> response = restTemplate.exchange("http://"+ beerServiceBaseUrl + "/beers/" + beerName, HttpMethod.PUT, new HttpEntity<>(beer), new ParameterizedTypeReference<Beer>() {
         });
         return response.getBody();
     }
 
-    @DeleteMapping("/beers/{name}")
-    public void deleteBeer(@PathVariable String name) {
-        restTemplate.exchange("http://"+ beerServiceBaseUrl + "/beers/" + name, HttpMethod.DELETE, null, new ParameterizedTypeReference<Beer>() {
+    @DeleteMapping("/beers/{beerName}")
+    public void deleteBeer(@PathVariable String beerName) {
+        restTemplate.exchange("http://"+ beerServiceBaseUrl + "/beers/" + beerName, HttpMethod.DELETE, null, new ParameterizedTypeReference<Beer>() {
         });
     }
 
