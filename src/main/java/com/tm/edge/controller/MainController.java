@@ -12,6 +12,7 @@ import org.springframework.web.client.RestTemplate;
 import com.tm.edge.model.Beer;
 import com.tm.edge.model.Brewery;
 import com.tm.edge.model.User;
+import com.tm.edge.model.Consumption;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -149,4 +150,57 @@ public class MainController {
         restTemplate.exchange(userInfoServiceBaseUrl + "/users/" + name, HttpMethod.DELETE, null, new ParameterizedTypeReference<User>() {
         });
     }
+
+    // returns a list of all consumptions
+    @GetMapping("/consumptions")
+    public List<Consumption> getConsumptions() {
+        ResponseEntity<List<Consumption>> response = restTemplate.exchange(userInfoServiceBaseUrl + "/consumptions", HttpMethod.GET, null, new ParameterizedTypeReference<List<Consumption>>() {
+        });
+        return response.getBody();
+    }
+
+    //get consumption by user
+    @GetMapping("/consumptions/user/{userId}")
+    public List<Consumption> getConsumptionsByUser(@PathVariable String userId) {
+        ResponseEntity<List<Consumption>> response = restTemplate.exchange(userInfoServiceBaseUrl + "/consumptions/user/" + userId, HttpMethod.GET, null, new ParameterizedTypeReference<List<Consumption>>() {
+        });
+        return response.getBody();
+    }
+
+    //get consumption by beer
+    @GetMapping("/consumptions/beer/{beerId}")
+    public List<Consumption> getConsumptionsByBeer(@PathVariable String beerId) {
+        ResponseEntity<List<Consumption>> response = restTemplate.exchange(userInfoServiceBaseUrl + "/consumptions/beer/" + beerId, HttpMethod.GET, null, new ParameterizedTypeReference<List<Consumption>>() {
+        });
+        return response.getBody();
+    }
+
+    //get consumption by beer and user
+    @GetMapping("/consumptions/user/{userId}/beer/{beer}")
+    public List<Consumption> getConsumptionsByBeerAndUser(@PathVariable String userId, @PathVariable String beer) {
+        ResponseEntity<List<Consumption>> response = restTemplate.exchange(userInfoServiceBaseUrl + "/consumptions/user/" + userId + "/beer/" + beer, HttpMethod.GET, null, new ParameterizedTypeReference<List<Consumption>>() {
+        });
+        return response.getBody();
+    }
+
+    @PostMapping("/consumptions")
+    public Consumption addConsumption(@RequestBody Consumption consumption) {
+        ResponseEntity<Consumption> response = restTemplate.exchange(userInfoServiceBaseUrl + "/consumptions", HttpMethod.POST, new HttpEntity<>(consumption), new ParameterizedTypeReference<Consumption>() {
+        });
+        return response.getBody();
+    }
+
+    @PutMapping("/consumptions")
+    public Consumption updateConsumption(@RequestBody Consumption consumption) {
+        ResponseEntity<Consumption> response = restTemplate.exchange(userInfoServiceBaseUrl + "/consumptions", HttpMethod.PUT, new HttpEntity<>(consumption), new ParameterizedTypeReference<Consumption>() {
+        });
+        return response.getBody();
+    }
+
+    @DeleteMapping("/consumptions/user/{userId}/beer/{beer}")
+    public void deleteConsumption(@PathVariable String userId, @PathVariable String beer) {
+        restTemplate.exchange(userInfoServiceBaseUrl + "/consumptions/user/" + userId + "/beer/" + beer, HttpMethod.DELETE, null, new ParameterizedTypeReference<Consumption>() {
+        });
+    }
+
 }
