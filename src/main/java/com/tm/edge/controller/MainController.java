@@ -44,8 +44,8 @@ public class MainController {
 
     @GetMapping("/beers/{beerName}")
     public Beer getBeerByName(@PathVariable String beerName) {
-        ResponseEntity<Beer> response = restTemplate.exchange("http://"+ beerServiceBaseUrl + "/beers/" + beerName, HttpMethod.GET, null, new ParameterizedTypeReference<Beer>() {
-        });
+        ResponseEntity<Beer> response = restTemplate.exchange("http://"+ beerServiceBaseUrl + "/beers/{beerName}", HttpMethod.GET, null, new ParameterizedTypeReference<Beer>() {
+        }, beerName);
         return response.getBody();
     }
 
