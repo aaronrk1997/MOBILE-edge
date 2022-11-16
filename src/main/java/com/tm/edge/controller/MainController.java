@@ -153,11 +153,9 @@ public class MainController {
         restTemplate.exchange("http://"+ userInfoServiceBaseUrl + "/users/" + name, HttpMethod.DELETE, null, new ParameterizedTypeReference<User>() {
         });
     }
-
-    //TODO ADD BEER OBJECT
     // returns a list of all consumptions
     @GetMapping("/consumptions")
-    public List<Consumption> getConsumptions() {
+    public List<FilledConsumption> getConsumptions() {
 
         List<FilledConsumption> filledConsumptions = new ArrayList<>();
         ResponseEntity<List<Consumption>> response = restTemplate.exchange("http://"+ consumptionServiceBaseUrl + "/consumptions", HttpMethod.GET, null, new ParameterizedTypeReference<List<Consumption>>() {
@@ -167,9 +165,14 @@ public class MainController {
 
         for (Consumption consumption: consumptions){
             Beer beer = restTemplate.getForObject("http://"+ beerServiceBaseUrl + "/beers/id/{id}", Beer.class,consumption.getBeerId());
+            filledConsumptions.add(new FilledConsumption(beer, consumption));
         }
-        return response.getBody();
+        return filledConsumptions;
     }
+
+    //TODO SEARCH CONSUMPTION ON ID
+    //TODO DELETE CONSUMPTION ON ID
+    //TODO PUT CONSUMPION ON ID
 
     //get consumption by user
     @GetMapping("/consumptions/user/{userId}")
