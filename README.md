@@ -12,10 +12,10 @@ Consumption-service: https://github.com/aaronrk1997/MOBILE-USER
 Beer-service: https://github.com/aaronrk1997/MOBILE-beer
 Edge-service: Huidige repo
 
-Foto van de architectuur:
+Foto van de architectuur: 
 
 Swagger van de edge service: https://edge-service-vanbroekhovenstef.cloud.okteto.net/swagger-ui/#/
 
-Foto van het swagger dashboard:
+Foto van het swagger dashboard: ![alt text](https://github.com/aaronrk1997/MOBILE-edge/blob/master/swagger%20overview.png)
 
 Foto's van postman vindbaar in het word document in deze repo ook.
