@@ -22,7 +22,7 @@ public class MainController {
     @Autowired
     private RestTemplate restTemplate;
 
-    @Value("${beerService.baseurl}")
+    @Value("${beerservice.baseurl}")
     private String beerServiceBaseUrl;
 
     @Value("${consumptionservice.baseurl}")
