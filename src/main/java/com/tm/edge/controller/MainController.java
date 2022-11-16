@@ -233,7 +233,7 @@ public class MainController {
 
     @PutMapping("/consumptions/{id}")
     public Consumption updateConsumption(@RequestBody Consumption consumption, @PathVariable String id) {
-        ResponseEntity<Consumption> response = restTemplate.exchange("http://"+ consumptionServiceBaseUrl + "/consumptions" + id, HttpMethod.PUT, new HttpEntity<>(consumption), new ParameterizedTypeReference<Consumption>() {
+        ResponseEntity<Consumption> response = restTemplate.exchange("http://"+ consumptionServiceBaseUrl + "/consumptions/" + id, HttpMethod.PUT, new HttpEntity<>(consumption), new ParameterizedTypeReference<Consumption>() {
         });
         return response.getBody();
     }
