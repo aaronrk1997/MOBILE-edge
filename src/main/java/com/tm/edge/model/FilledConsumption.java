@@ -12,7 +12,6 @@ public class FilledConsumption {
     private Integer count;
     private Integer score;
     private String remark;
-    private Date createdAt;
     private Beer beer;
 
     
@@ -22,7 +21,7 @@ public class FilledConsumption {
         setCount(consumption.getCount());
         setScore(consumption.getScore());
         setRemark(consumption.getRemark());
-        setCreatedAt(consumption.getCreatedAt());
+        setBeer(beer);
         
     }
 
@@ -74,13 +73,14 @@ public class FilledConsumption {
         this.remark = remark;
     }
 
-    public Date getCreatedAt() {
-        return createdAt;
+    public Beer getBeer() {
+        return beer;
     }
 
-    public void setCreatedAt(java.util.Date date) {
-        this.createdAt = (Date) date;
+    public void setBeer(Beer beer) {
+        this.beer = beer;
     }
+
 
     
 }
