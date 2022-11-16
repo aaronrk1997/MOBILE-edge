@@ -18,4 +18,4 @@ Swagger van de edge service: https://edge-service-vanbroekhovenstef.cloud.okteto
 
 Foto van het swagger dashboard: ![alt text](https://github.com/aaronrk1997/MOBILE-edge/blob/master/swagger%20overview.png)
 
-Foto's van postman vindbaar in het word document in deze repo ook.
+Foto's van postman vindbaar in het word document in deze repo ook: https://github.com/aaronrk1997/MOBILE-edge/blob/master/Printscreens%20postman.pdf
