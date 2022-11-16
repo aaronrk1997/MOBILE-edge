@@ -212,9 +212,9 @@ public class MainController {
         return response.getBody();
     }
 
-    @DeleteMapping("/consumptions/user/{userId}/beer/{beer}")
-    public void deleteConsumption(@PathVariable String userId, @PathVariable String beer) {
-        restTemplate.exchange("http://"+ consumptionServiceBaseUrl + "/consumptions/user/" + userId + "/beer/" + beer, HttpMethod.DELETE, null, new ParameterizedTypeReference<Consumption>() {
+    @DeleteMapping("/consumptions/{id}")
+    public void deleteConsumption(@PathVariable String id) {
+        restTemplate.exchange("http://"+ consumptionServiceBaseUrl + "/consumptions/" + id, HttpMethod.DELETE, null, new ParameterizedTypeReference<Consumption>() {
         });
     }
 
